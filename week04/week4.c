@@ -14,7 +14,7 @@ int main(void) {
     printf("1. inch -> cm 변환\n");
     printf("2. 섭씨(℃) -> 화씨(℉) 변환\n");
     printf("3. 초 -> 시간·분·초 변환\n");
-    printf("4. 합격 여부 판단\n");
+    printf("4. 성적 가증 평균\n");
     printf("5. EXEC 권한 추가 (비트 연산)\n");
     printf("6. 윤년 판별\n");
     printf("7. 금액 분해\n");
