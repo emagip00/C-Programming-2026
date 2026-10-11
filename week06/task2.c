@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-
 int isleapyear(int year) {
     if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {
         return 1;
@@ -10,20 +9,17 @@ int isleapyear(int year) {
 }
 
 void exerc(void) {
-    int month;
-    int days;
+    int year, month, days;
+
+    printf("연도 입력 : ");
+    scanf("%d", &year);
 
     printf("월 입력(1~12) : ");
     scanf("%d", &month);
 
     if (month >= 1 && month <= 12) {
-        int year;
-
         switch (month) {
             case 2:
-                printf("input year : ");
-                scanf("%d", &year);
-
                 if (isleapyear(year) == 1) {
                     days = 29;
                 } else {
@@ -43,7 +39,7 @@ void exerc(void) {
                 break;
         }
 
-        printf("%d월은 %d일까지 있습니다.\n", month, days);
+        printf("%d년 %d월은 %d일까지 있습니다.\n", year, month, days);
 
     } else {
         printf("1부터 12사이의 값을 입력하세요.\n");
