@@ -6,7 +6,6 @@ int main(void) {
     printf("학년을 입력하세요 : ");
     scanf("%d", &grade);
 
-    // switch-case 변환 버전
     switch (grade) {
         case 1:
             printf("1학년입니다.\n");
