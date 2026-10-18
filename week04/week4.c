@@ -11,13 +11,12 @@ int main(void) {
     printf("2. 섭씨(℃) -> 화씨(℉) 변환\n");
     printf("3. 초 -> 시간·분·초 변환\n");
     printf("4. 합격 여부 판단\n");
-    printf("5. EXEC 권한 추가 (비트 연산)\n");
-    printf("6. 윤년 판별\n");
-    printf("7. 금액 분해\n");
-    printf("8. BMI 계산\n");
-    printf("9. 원의 넓이 및 둘레 계산\n");
+    printf("5. 윤년 판별\n");
+    printf("6. 금액 분해\n");
+    printf("7. BMI 계산\n");
+    printf("8. 원의 넓이 및 둘레 계산\n");
     printf("==============================\n");
-    printf("원하는 메뉴 번호를 선택하세요 (1~9): ");
+    printf("원하는 메뉴 번호를 선택하세요 (1~8): ");
     scanf("%d", &menu);
 
     if (menu == 1) {
@@ -70,22 +69,6 @@ int main(void) {
         printf("합격 여부 (1: 합격, 0: 불합격): %d\n", passed);
     }
     else if (menu == 5) {
-        printf("\n[ EXEC 권한 추가 (비트 연산) ]\n");
-
-        unsigned int EXEC = 0x04; // 0000 0100 (EXEC 권한)
-        unsigned int permission;
-
-        printf("현재 권한 값(16진수, 예: 3 또는 0x03)을 입력하세요: ");
-        scanf("%x", &permission);
-
-        printf("입력 전 권한 값: 0x%02X\n", permission);
-
-        // EXEC 권한 추가 (비트 OR 연산)
-        permission |= EXEC;
-
-        printf("EXEC 권한(0x04) 추가 후 최종 권한 값: 0x%02X\n", permission);
-    }
-    else if (menu == 6) {
         int year;
 
         printf("\n[ 윤년 판별 ]\n");
@@ -102,7 +85,7 @@ int main(void) {
 
         printf("윤년 여부 (1: 윤년, 0: 평년): %d\n", is_leap);
     }
-    else if (menu == 7) {
+    else if (menu == 6) {
         int amount;
 
         printf("\n[ 금액 분해 ]\n");
@@ -122,7 +105,7 @@ int main(void) {
 
         printf("10000:%d 1000:%d 100:%d 10:%d\n", won10000, won1000, won100, won10);
     }
-    else if (menu == 8) {
+    else if (menu == 7) {
         double height, weight;
 
         printf("\n[ BMI 계산 ]\n");
@@ -133,7 +116,7 @@ int main(void) {
 
         printf("bmi = %.2f\n", bmi);
     }
-    else if (menu == 9) {
+    else if (menu == 8) {
         double radius;
         const double PI = 3.141592;
 
@@ -148,9 +131,9 @@ int main(void) {
         printf("반지름: %.2f\n", radius);
         printf("원의 둘레: %.2f\n", circumference);
         printf("원의 넓이: %.2f\n", area);
-    } 
+    }
     else {
-        printf("\n잘못된 메뉴 번호입니다. 1에서 9 사이의 숫자를 입력해 주세요.\n");
+        printf("\n잘못된 메뉴 번호입니다. 1에서 8 사이의 숫자를 입력해 주세요.\n");
     }
 
     return 0;
