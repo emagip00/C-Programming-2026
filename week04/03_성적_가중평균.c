@@ -15,9 +15,9 @@
  * 합이 100.0 이 아니면 프로그램이 알려준다.
  */
 #define W_MIDTERM    30.0   // 중간고사 30%
-#define W_FINAL      30.0   // 기말고사 30%
+#define W_FINAL      40.0   // 기말고사 40%
 #define W_HOMEWORK   20.0   // 과제     20%
-#define W_ATTENDANCE 20.0   // 출석     20%
+#define W_ATTENDANCE 10.0   // 출석     10%
 
 // 점수 하나를 입력받아 0~100 범위인지까지 확인한다
 static int read_score(const char *item, double *out) {
