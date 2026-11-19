@@ -5,12 +5,22 @@ int main(void) {
     int score;
     int count = 0;
     int sum = 0;
+    int c;
 
     printf("[ 유효한 점수 세 개 ]\n");
 
     while (count < 3) {
         printf("점수를 입력하세요 (0~100, 종료는 -1): ");
-        scanf("%d", &score);
+
+        if (scanf("%d", &score) != 1) {
+            if (feof(stdin)) {
+                printf("\n입력이 종료되었습니다.\n");
+                break;
+            }
+            printf("오류: 정수만 입력할 수 있습니다.\n");
+            while ((c = getchar()) != '\n' && c != EOF) { }  // 잘못된 입력 비우기
+            continue;
+        }
 
         if (score == -1) {
             break;

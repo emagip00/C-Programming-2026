@@ -1,6 +1,24 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+static int read_int(const char *prompt, int *out) {
+    printf("%s", prompt);
+    if (scanf("%d", out) != 1) {
+        printf("입력 오류: 정수를 입력하세요.\n");
+        return 0;
+    }
+    return 1;
+}
+
+static int read_double(const char *prompt, double *out) {
+    printf("%s", prompt);
+    if (scanf("%lf", out) != 1) {
+        printf("입력 오류: 숫자를 입력하세요.\n");
+        return 0;
+    }
+    return 1;
+}
+
 int main(void) {
     int menu;
 
@@ -16,14 +34,15 @@ int main(void) {
     printf("7. BMI 계산\n");
     printf("8. 원의 넓이 및 둘레 계산\n");
     printf("==============================\n");
-    printf("원하는 메뉴 번호를 선택하세요 (1~8): ");
-    scanf("%d", &menu);
+
+    if (!read_int("원하는 메뉴 번호를 선택하세요 (1~8): ", &menu)) {
+        return 1;
+    }
 
     if (menu == 1) {
         double inch, cm;
         printf("\n[ inch -> cm 변환 ]\n");
-        printf("인치(inch)를 입력하세요: ");
-        scanf("%lf", &inch);
+        if (!read_double("인치(inch)를 입력하세요: ", &inch)) return 1;
 
         // 1 inch = 2.54 cm
         cm = inch * 2.54;
@@ -32,8 +51,7 @@ int main(void) {
     else if (menu == 2) {
         double celsius, fahrenheit;
         printf("\n[ 섭씨 -> 화씨 변환 ]\n");
-        printf("섭씨(℃) 온도를 입력하세요: ");
-        scanf("%lf", &celsius);
+        if (!read_double("섭씨(℃) 온도를 입력하세요: ", &celsius)) return 1;
 
         // F = C * 1.8 + 32
         fahrenheit = (celsius * 1.8) + 32.0;
@@ -43,8 +61,12 @@ int main(void) {
         printf("\n[ 초 -> 시·분·초 변환 ]\n");
 
         int total;
-        printf("초(sec)를 입력하세요: ");
-        scanf("%d", &total);
+        if (!read_int("초(sec)를 입력하세요: ", &total)) return 1;
+
+        if (total < 0) {
+            printf("오류: 0 이상의 값을 입력하세요.\n");
+            return 1;
+        }
 
         int hours = total / 3600;            // 1시간 = 3600초
         int minutes = (total % 3600) / 60;   // 남은 초에서 분 계산
@@ -56,11 +78,8 @@ int main(void) {
         printf("\n[ 합격 여부 판단 ]\n");
 
         int score, attendance;
-        printf("점수를 입력하세요: ");
-        scanf("%d", &score);
-
-        printf("출석률(%%)을 입력하세요: ");
-        scanf("%d", &attendance);
+        if (!read_int("점수를 입력하세요: ", &score)) return 1;
+        if (!read_int("출석률(%)을 입력하세요: ", &attendance)) return 1;
 
         // 점수 60점 이상 AND 출석률 80% 이상 조건
         int passed = (score >= 60) && (attendance >= 80);
@@ -72,8 +91,7 @@ int main(void) {
         int year;
 
         printf("\n[ 윤년 판별 ]\n");
-        printf("연도를 입력하세요: ");
-        scanf("%d", &year);
+        if (!read_int("연도를 입력하세요: ", &year)) return 1;
 
         // 윤년 조건 분해
         int multiple_of_4 = (year % 4 == 0);
@@ -89,8 +107,12 @@ int main(void) {
         int amount;
 
         printf("\n[ 금액 분해 ]\n");
-        printf("금액을 입력하세요: ");
-        scanf("%d", &amount);
+        if (!read_int("금액을 입력하세요: ", &amount)) return 1;
+
+        if (amount < 0) {
+            printf("오류: 0 이상의 금액을 입력하세요.\n");
+            return 1;
+        }
 
         int won10000 = amount / 10000;
         amount %= 10000;
@@ -110,7 +132,15 @@ int main(void) {
 
         printf("\n[ BMI 계산 ]\n");
         printf("키(m)와 몸무게(kg)를 입력하세요 (예: 1.70 65.0): ");
-        scanf("%lf %lf", &height, &weight);
+        if (scanf("%lf %lf", &height, &weight) != 2) {
+            printf("입력 오류: 숫자 두 개를 입력하세요.\n");
+            return 1;
+        }
+
+        if (height <= 0.0) {
+            printf("오류: 키는 0 보다 커야 합니다.\n");
+            return 1;
+        }
 
         double bmi = weight / (height * height);
 
@@ -121,8 +151,12 @@ int main(void) {
         const double PI = 3.141592;
 
         printf("\n[ 원의 넓이 및 둘레 계산 ]\n");
-        printf("원의 반지름을 입력하세요: ");
-        scanf("%lf", &radius);
+        if (!read_double("원의 반지름을 입력하세요: ", &radius)) return 1;
+
+        if (radius < 0.0) {
+            printf("오류: 반지름은 0 이상이어야 합니다.\n");
+            return 1;
+        }
 
         double circumference = 2.0 * PI * radius;
         double area = PI * radius * radius;

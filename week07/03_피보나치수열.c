@@ -1,17 +1,28 @@
 #include <stdio.h>
 
-void exerc1(void){ }
-void exerc2(void){ }
-
 void exerc3(void){
     int n;
-    int n_1, n_2, result;
+
+    long long n_1, n_2, result;
     n_2 = 0;
     n_1 = 1;
-    
+
     printf("input n : ");
-    scanf("%d", &n);
-    
+
+    if(scanf("%d", &n) != 1){
+        printf("입력 오류: 정수를 입력하세요.\n");
+        return;
+    }
+
+    if(n < 0){
+        printf("오류: 0 이상의 정수를 입력하세요.\n");
+        return;
+    }
+    if(n > 90){
+        printf("오류: 90 번째 항까지만 계산할 수 있습니다.\n");
+        return;
+    }
+
     if(n==0) result = n_2;
     else if(n==1) result = n_1;
     else{
@@ -21,10 +32,10 @@ void exerc3(void){
             n_1 = result;
         }
     }
-    printf("%d 번째 숫자는 %d 입니다.", n, result);
+    printf("%d 번째 숫자는 %lld 입니다.\n", n, result);
 }
 
-int main()
+int main(void)
 {
     exerc3();
     return 0;
