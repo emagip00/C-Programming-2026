@@ -12,10 +12,17 @@ void exerc(void) {
     int year, month, days;
 
     printf("연도 입력 : ");
-    scanf("%d", &year);
+
+    if (scanf("%d", &year) != 1) {
+        printf("입력 오류: 연도를 정수로 입력하세요.\n");
+        return;
+    }
 
     printf("월 입력(1~12) : ");
-    scanf("%d", &month);
+    if (scanf("%d", &month) != 1) {
+        printf("입력 오류: 월을 정수로 입력하세요.\n");
+        return;
+    }
 
     if (month >= 1 && month <= 12) {
         switch (month) {

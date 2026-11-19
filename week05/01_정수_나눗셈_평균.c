@@ -9,13 +9,21 @@ int main(void)
     double avg_real_div;
 
     printf("국어 점수를 입력하세요: ");
-    scanf("%d", &korean); // 에러 원인 수정: & 기호 추가
+    if (scanf("%d", &korean) != 1) {
+        printf("입력 오류: 정수를 입력하세요.\n");
+        return 1;
+    }
 
     printf("수학 점수를 입력하세요: ");
-    scanf("%d", &math);
+    if (scanf("%d", &math) != 1) {
+        printf("입력 오류: 정수를 입력하세요.\n");
+        return 1;
+    }
 
-  
+    // 정수 나눗셈: 두 정수의 합을 정수 2로 나누므로 소수점이 버려진다
     avg_integer_div = (korean + math) / 2;
+
+    avg_real_div = (korean + math) / 2.0;
 
     printf("\n[ 계산 결과 ]\n");
     printf("정수 나눗셈을 사용한 평균: %.1f\n", avg_integer_div);

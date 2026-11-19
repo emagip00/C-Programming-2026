@@ -4,7 +4,11 @@
 int main(void) {
     int grade;
     printf("학년을 입력하세요 : ");
-    scanf("%d", &grade);
+
+    if (scanf("%d", &grade) != 1) {
+        printf("입력 오류: 정수를 입력하세요.\n");
+        return 1;
+    }
 
     switch (grade) {
         case 1:
